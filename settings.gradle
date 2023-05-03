@@ -9,3 +9,5 @@
 
 rootProject.name = 'aws-examples'
 include('aws-sqs-example')
+include 'spring-security-aws'
+
