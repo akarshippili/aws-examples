@@ -1,15 +1,36 @@
-package com.akarsh.aws.examples.security.authentication;
+package com.akarsh.aws.examples.security.config.authentication;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class RobotAuthentication implements Authentication {
+
+    private final boolean isAuthenticated;
+    private final List<GrantedAuthority> authorities;
+    private final String password;
+
+    private RobotAuthentication(List<GrantedAuthority> authorities, String password) {
+        this.authorities = authorities;
+        this.password = password;
+        this.isAuthenticated = password == null;
+    }
+
+    public static RobotAuthentication authenticated() {
+        return new RobotAuthentication(AuthorityUtils.createAuthorityList("ROLE_robot"), null);
+    }
+    public static RobotAuthentication unauthenticated(String password) {
+        return new RobotAuthentication(Collections.emptyList(), password);
+    }
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList("ROLE_ROBOT");
+        return authorities;
     }
 
     @Override
@@ -29,7 +50,7 @@ public class RobotAuthentication implements Authentication {
 
     @Override
     public boolean isAuthenticated() {
-        return true;
+        return isAuthenticated;
     }
 
     @Override
@@ -40,5 +61,9 @@ public class RobotAuthentication implements Authentication {
     @Override
     public String getName() {
         return "Robot. (They/Them)";
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
