@@ -12,12 +12,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 
 @Slf4j
 public class RobotFilter extends OncePerRequestFilter {
+
+    private final String HEADER_NAME = "X-Robot-Password";
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String password = request.getHeader("X-Robot-Password");
+        if (!Collections.list(request.getHeaderNames()).contains(HEADER_NAME)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        var password = request.getHeader(HEADER_NAME);
         if (!"beep-boop".equals(password)) {
             // Not authenticated
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
