@@ -1,0 +1,2 @@
+INSERT INTO T_STUDENT('ID', 'FIRST_NAME', 'LAST_NAME')  VALUES  (1, 'Akarsh', 'Ippili');
+INSERT INTO T_STUDENT('ID', 'FIRST_NAME', 'LAST_NAME')  VALUES  (2, 'Elon', 'Musk');

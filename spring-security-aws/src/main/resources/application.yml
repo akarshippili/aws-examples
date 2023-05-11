@@ -1,0 +1,14 @@
+spring.application-name: spring-security-aws
+server.port: 0
+
+spring:
+  datasource:
+    username: postgres
+    password: password123
+    url: jdbc:postgresql://localhost:5432/users
+    driverClassName: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    properties.hibernate.format_sql: true
+    hibernate.ddl-auto: update
+    properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL10Dialect
