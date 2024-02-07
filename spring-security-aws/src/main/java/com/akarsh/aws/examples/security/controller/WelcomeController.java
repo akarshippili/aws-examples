@@ -9,7 +9,7 @@ public class WelcomeController {
 
     @GetMapping("/welcome")
     public String welcome(){
-        return "What's your Name ?";
+        return "What's your Name ?\n";
     }
 
 }

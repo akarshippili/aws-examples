@@ -20,7 +20,7 @@ import java.util.Collections;
 @Slf4j
 public class RobotFilter extends OncePerRequestFilter {
 
-    private final String HEADER_NAME = "x-robot-password";
+    private static final String HEADER_NAME = "x-robot-password";
     private final AuthenticationManager authenticationManager;
 
     public RobotFilter(AuthenticationManager authenticationManager) {
@@ -48,7 +48,6 @@ public class RobotFilter extends OncePerRequestFilter {
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Content-Type", "text/plain;charset=UTF-8");
             response.getWriter().println("you are not robot");
-            return;
         }
     }
 }

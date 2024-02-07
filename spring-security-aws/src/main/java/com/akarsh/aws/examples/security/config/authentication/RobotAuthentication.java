@@ -1,5 +1,6 @@
 package com.akarsh.aws.examples.security.config.authentication;
 
+import lombok.Getter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -12,6 +13,8 @@ public class RobotAuthentication implements Authentication {
 
     private final boolean isAuthenticated;
     private final List<GrantedAuthority> authorities;
+
+    @Getter
     private final String password;
 
     private RobotAuthentication(List<GrantedAuthority> authorities, String password) {
@@ -63,7 +66,4 @@ public class RobotAuthentication implements Authentication {
         return "Robot. (They/Them)";
     }
 
-    public String getPassword() {
-        return password;
-    }
 }

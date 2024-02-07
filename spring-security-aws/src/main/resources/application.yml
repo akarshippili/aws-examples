@@ -1,5 +1,5 @@
 spring.application-name: spring-security-aws
-server.port: 0
+server.port: 33517
 
 spring:
   datasource:
@@ -12,3 +12,14 @@ spring:
     properties.hibernate.format_sql: true
     hibernate.ddl-auto: update
     properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL10Dialect
+
+  security:
+    listeners: com.akarsh.aws.examples.security.config.listeners.AuthenticationSuccessListener
+
+logging:
+  file: ./spring-security.log
+  level:
+    org.springframework.security: TRACE
+#    root: TRACE
+
+
